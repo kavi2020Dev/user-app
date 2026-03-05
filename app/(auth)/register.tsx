@@ -13,6 +13,7 @@ import ScreenWrapper from "@/components/layout/ScreenWrapper";
 import { router } from "expo-router";
 import Toast from "react-native-toast-message";
 import { useAuth } from "@/context/AuthContext";
+import { Theme } from "@/constants/theme";
 
 export default function RegisterPage() {
  const theme = useTheme();
@@ -149,7 +150,7 @@ export default function RegisterPage() {
       <Button
         title="Register"
         onPress={handleSubmit(onSubmit)}
-        loading={isLoading}
+        loading={isLoading || isSubmitting}
         style={{ marginTop: 10 }}/>
 
       <Typography style={styles.footerText} weight="medium">Already have an account ? 
@@ -160,7 +161,7 @@ export default function RegisterPage() {
   );
 }
 
-const createStyles = (theme: any) =>
+const createStyles = (theme: Theme) =>
   StyleSheet.create({
     title:{
      color: theme.primary,  

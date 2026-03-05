@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { useTheme } from "@/hooks/use-theme";
 import { FontFamily } from "@/constants/fonts";
+import { Theme } from "@/constants/theme";
 
 type Variant =
   | "primary"
@@ -47,7 +48,7 @@ export default function Button({
   textStyle,
 }: ButtonProps) {
   const theme = useTheme();
-  const styles:any = createStyles(theme);
+  const styles = createStyles(theme);
 
   const isDisabled = disabled || loading;
 
@@ -87,7 +88,7 @@ export default function Button({
 }
 
 
-const createStyles = (theme: any) =>
+const createStyles = (theme: Theme) =>
   StyleSheet.create({
     base: {
       borderRadius: 12,
@@ -122,7 +123,7 @@ const createStyles = (theme: any) =>
     },
 
     secondary: {
-      backgroundColor: theme.secondary,
+      backgroundColor: theme.primary,
     },
     secondaryText: {
       color: "#fff",

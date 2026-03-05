@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useTheme } from "@/hooks/use-theme";
 import { FontFamily } from "@/constants/fonts";
+import { Theme } from "@/constants/theme";
 
 interface InputProps extends TextInputProps {
   label?: string;
@@ -33,7 +34,7 @@ const Input = forwardRef<TextInput, InputProps>(
     },
     ref
   ) => {
-    const theme:any = useTheme();
+    const theme = useTheme();
     const styles = createStyles(theme, !!error);
 
     return (
@@ -62,7 +63,7 @@ const Input = forwardRef<TextInput, InputProps>(
 export default Input;
 
 
-const createStyles = (theme: any, hasError: boolean) =>
+const createStyles = (theme: Theme, hasError: boolean) =>
   StyleSheet.create({
     wrapper: {
       marginBottom: hasError ? 8 : 16,

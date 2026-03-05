@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import { useTheme } from "@/hooks/use-theme";
 import { FontFamily } from "@/constants/fonts";
+import { Theme } from "@/constants/theme";
 
 type Variant =
   | "h1"
@@ -48,7 +49,7 @@ export default function Typography({
   );
 }
 
-const createStyles = (theme: any) =>
+const createStyles = (theme: Theme) =>
   StyleSheet.create({
     base: {
       color: theme.text,

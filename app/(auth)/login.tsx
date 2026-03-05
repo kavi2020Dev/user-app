@@ -12,20 +12,29 @@ import ScreenWrapper from "@/components/layout/ScreenWrapper";
 import { router } from "expo-router";
 import { LoginFormData, loginSchema } from "@/utils/schema/auth.schema";
 import { useAuth } from "@/context/AuthContext";
+import { Theme } from "@/constants/theme";
 
 export default function LoginPage() {
   const theme = useTheme();
   const styles = createStyles(theme);
   const [isShow, setIsShow] = useState<boolean>(false);
   // context
-  const { isLoading, login } = useAuth();
+  const { isLoading, login, isAuthenticated } = useAuth();
+
+  // Auto redirect if user already logged in
+  
+   // useEffect(() => {
+   //   if (isAuthenticated) {
+   //     router.replace("/(pages)/dashboard");
+   //   }
+   // }, [isAuthenticated]);
 
   const {
     control,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormData>({
-    resolver: yupResolver(loginSchema) as any,
+    resolver: yupResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -121,7 +130,7 @@ export default function LoginPage() {
   );
 }
 
-const createStyles = (theme: any) =>
+const createStyles = (theme: Theme) =>
   StyleSheet.create({
     title: {
       color: theme.primary,
